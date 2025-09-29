@@ -1,5 +1,7 @@
 # Employee CRUD App
 
+Live demo: https://employee-management-sand-five.vercel.app/
+
 A simple Express + SQLite app with a minimal HTML/JS frontend.
 
 ## Run
@@ -47,6 +49,7 @@ Tests use an in-memory SQLite database.
 4. Deploy. The app will be available at your Render URL.
 
 ## Deploy (Vercel + Neon Postgres)
+
 1. Create a Neon project; copy `DATABASE_URL`.
 2. In Vercel, import this repo.
 3. Set env var `DATABASE_URL` to your Neon connection string.
