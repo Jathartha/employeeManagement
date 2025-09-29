@@ -11,6 +11,8 @@ services:
         value: production
       - key: DATABASE_FILE
         value: /data/data.sqlite
+      - key: NODE_VERSION
+        value: 20
     disk:
       name: data
       mountPath: /data
