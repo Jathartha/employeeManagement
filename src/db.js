@@ -3,9 +3,17 @@ const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
 
 const isTest = process.env.NODE_ENV === 'test';
-const databaseFilePath = isTest
-	? ':memory:'
-	: (process.env.DATABASE_FILE || path.join(__dirname, '..', 'data.sqlite'));
+let databaseFilePath = ':memory:';
+if (!isTest) {
+	if (process.env.DATABASE_FILE && process.env.DATABASE_FILE.trim() !== '') {
+		databaseFilePath = process.env.DATABASE_FILE.trim();
+	} else if (process.env.RENDER) {
+		// On Render without a mounted disk, write to /tmp (ephemeral but writable)
+		databaseFilePath = path.join('/tmp', 'data.sqlite');
+	} else {
+		databaseFilePath = path.join(__dirname, '..', 'data.sqlite');
+	}
+}
 
 // Ensure parent directory exists for file-based DBs
 if (databaseFilePath !== ':memory:') {
