@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Manager</title>
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Manager</h1>
+        <div class="controls">
+            <input id="search" type="text" placeholder="Search by name..." />
+            <button id="refresh">Refresh</button>
+        </div>
+
+        <form id="employee-form">
+            <h2>Add Employee</h2>
+            <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" required />
+            </div>
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required />
+            </div>
+            <div class="field">
+                <label for="position">Position</label>
+                <input id="position" name="position" type="text" required />
+            </div>
+            <button type="submit">Add</button>
+            <div id="form-error" class="error" aria-live="polite"></div>
+        </form>
+
+        <h2>Employees</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Position</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="employees"></tbody>
+        </table>
+    </div>
+
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <h3 id="modal-title">Edit Employee</h3>
+            <form id="edit-form">
+                <input type="hidden" id="edit-id" />
+                <div class="field">
+                    <label for="edit-name">Name</label>
+                    <input id="edit-name" type="text" required />
+                </div>
+                <div class="field">
+                    <label for="edit-email">Email</label>
+                    <input id="edit-email" type="email" required />
+                </div>
+                <div class="field">
+                    <label for="edit-position">Position</label>
+                    <input id="edit-position" type="text" required />
+                </div>
+                <div class="modal-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" id="cancel">Cancel</button>
+                </div>
+                <div id="edit-error" class="error" aria-live="polite"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+  </html>
+
+
