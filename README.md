@@ -45,3 +45,9 @@ Tests use an in-memory SQLite database.
    - Add a Disk: name `data`, mount path `/data`, size `1GB`
    - Add env vars: `NODE_ENV=production`, `DATABASE_FILE=/data/data.sqlite`
 4. Deploy. The app will be available at your Render URL.
+
+## Deploy (Vercel + Neon Postgres)
+1. Create a Neon project; copy `DATABASE_URL`.
+2. In Vercel, import this repo.
+3. Set env var `DATABASE_URL` to your Neon connection string.
+4. Deploy. API served by serverless function; static frontend from `public/`.

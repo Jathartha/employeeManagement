@@ -1,23 +1,17 @@
 const request = require('supertest');
 process.env.NODE_ENV = 'test';
+process.env.DATABASE_URL = process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/postgres';
 const { app } = require('../src/app');
-const db = require('../src/db');
+const pool = require('../src/db');
 
 describe('Employees CRUD API', () => {
-	beforeAll((done) => {
-		// Ensure table is clean for each run
-		db.serialize(() => {
-			db.run('DELETE FROM employees', () => done());
-		});
-	});
+    beforeAll(async () => {
+        await pool.query('DELETE FROM employees');
+    });
 
-	afterAll((done) => {
-		try {
-			db.close(() => done());
-		} catch (_) {
-			done();
-		}
-	});
+    afterAll(async () => {
+        await pool.end();
+    });
 
 	it('creates an employee', async () => {
 		const res = await request(app)

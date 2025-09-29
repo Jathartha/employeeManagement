@@ -17,4 +17,3 @@ services:
       name: data
       mountPath: /data
       sizeGB: 1
-

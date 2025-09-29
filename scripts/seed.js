@@ -1,5 +1,5 @@
-/* Seed 30 Indian employees into SQLite */
-const db = require('../src/db');
+/* Seed 30 Indian employees into Postgres */
+const pool = require('../src/db');
 
 const employees = [
 	{ name: 'Aarav Sharma', email: 'aarav.sharma@example.com', position: 'Engineer' },
@@ -34,25 +34,18 @@ const employees = [
 	{ name: 'Navya Nair', email: 'navya.nair@example.com', position: 'Engineer' }
 ];
 
-db.serialize(() => {
-	const insert = db.prepare('INSERT OR IGNORE INTO employees (name, email, position) VALUES (?, ?, ?)');
-	for (const e of employees) {
-		insert.run([e.name, e.email, e.position]);
-	}
-	insert.finalize((err) => {
-		if (err) {
-			console.error('Seed failed:', err.message);
-			process.exit(1);
+(async () => {
+	try {
+		for (const e of employees) {
+			await pool.query('INSERT INTO employees (name, email, position) VALUES ($1, $2, $3) ON CONFLICT (email) DO NOTHING', [e.name, e.email, e.position]);
 		}
-		db.get('SELECT COUNT(*) as count FROM employees', (err2, row) => {
-			if (err2) {
-				console.error('Count failed:', err2.message);
-				process.exit(1);
-			}
-			console.log(`Seed complete. Total employees: ${row.count}`);
-			process.exit(0);
-		});
-	});
-});
+		const { rows } = await pool.query('SELECT COUNT(*)::int as count FROM employees');
+		console.log(`Seed complete. Total employees: ${rows[0].count}`);
+		process.exit(0);
+	} catch (err) {
+		console.error('Seed failed:', err.message);
+		process.exit(1);
+	}
+})();
 
 
