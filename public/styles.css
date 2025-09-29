@@ -1,20 +1,58 @@
 * { box-sizing: border-box; }
-body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f7f7f7; }
-.container { max-width: 980px; margin: 0 auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-h1 { margin-top: 0; }
-form { margin: 16px 0; padding: 12px; border: 1px solid #eee; border-radius: 6px; }
-.field { display: flex; flex-direction: column; margin-bottom: 12px; }
-label { font-size: 12px; color: #555; margin-bottom: 4px; }
-input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-button { padding: 8px 12px; margin-right: 8px; }
-table { width: 100%; border-collapse: collapse; }
-th, td { padding: 10px; border-bottom: 1px solid #eee; text-align: left; }
-.controls { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
-.error { color: #b00020; margin-top: 8px; min-height: 18px; }
+:root {
+	--bg: #0f172a;
+	--card: #0b1223;
+	--muted: #94a3b8;
+	--text: #e2e8f0;
+	--primary: #4f46e5;
+	--primary-600: #4338ca;
+	--accent: #22d3ee;
+	--border: #1e293b;
+}
+body {
+	font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+	margin: 0;
+	padding: 32px 20px;
+	background: radial-gradient(1200px 600px at 10% -10%, rgba(79,70,229,.12), transparent),
+		radial-gradient(800px 400px at 90% 10%, rgba(34,211,238,.10), transparent),
+		var(--bg);
+	color: var(--text);
+}
+.container { max-width: 1080px; margin: 0 auto; }
+.app-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.subtitle { margin: 6px 0 0; color: var(--muted); }
+h1 { margin: 0; font-size: 28px; letter-spacing: .2px; }
 
-.modal { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); }
+.card { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border: 1px solid var(--border); border-radius: 12px; padding: 16px; box-shadow: 0 8px 30px rgba(0,0,0,.18); }
+.table-card { margin-top: 16px; }
+
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+label { font-size: 12px; color: var(--muted); }
+.input { padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: #0a1020; color: var(--text); outline: none; transition: border .15s ease, box-shadow .15s ease; }
+.input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(34,211,238,.10); }
+
+.actions { margin-top: 10px; }
+.btn { padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); background: #0a1020; color: var(--text); cursor: pointer; transition: transform .06s ease, background .15s ease, border .15s ease; }
+.btn:hover { background: #0c1428; }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: linear-gradient(180deg, var(--primary), var(--primary-600)); border: 1px solid transparent; }
+.btn-primary:hover { filter: brightness(1.05); }
+.btn-outline { background: transparent; border: 1px solid var(--border); }
+
+.controls { display: flex; gap: 10px; align-items: center; }
+
+.table-wrapper { overflow: auto; border-radius: 10px; border: 1px solid var(--border); }
+.table { width: 100%; border-collapse: collapse; min-width: 640px; }
+th, td { padding: 12px 14px; border-bottom: 1px solid var(--border); text-align: left; }
+thead th { position: sticky; top: 0; background: #0b1223; z-index: 1; }
+tbody tr:hover { background: rgba(255,255,255,.02); }
+
+.error { color: #ff6b6b; margin-top: 8px; min-height: 18px; }
+
+.modal { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(2,6,23,0.6); backdrop-filter: blur(2px); }
 .modal.hidden { display: none; }
-.modal-content { background: white; padding: 16px; border-radius: 8px; min-width: 320px; }
+.modal-content { background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); padding: 16px; border-radius: 12px; min-width: 360px; border: 1px solid var(--border); box-shadow: 0 8px 30px rgba(0,0,0,.25); }
 .modal-actions { margin-top: 12px; display: flex; gap: 8px; justify-content: flex-end; }
 
 

@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: employee-crud
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm install
+    startCommand: node src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_FILE
+        value: /data/data.sqlite
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
+

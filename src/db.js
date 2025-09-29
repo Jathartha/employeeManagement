@@ -1,7 +1,10 @@
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 
-const databaseFilePath = path.join(__dirname, '..', 'data.sqlite');
+const isTest = process.env.NODE_ENV === 'test';
+const databaseFilePath = isTest
+	? ':memory:'
+	: (process.env.DATABASE_FILE || path.join(__dirname, '..', 'data.sqlite'));
 
 // Create or open the SQLite database
 const db = new sqlite3.Database(databaseFilePath);

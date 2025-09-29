@@ -1,0 +1,6 @@
+node_modules/
+data.sqlite
+.env
+coverage/
+.DS_Store
+

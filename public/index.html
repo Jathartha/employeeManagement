@@ -8,42 +8,55 @@
 </head>
 <body>
     <div class="container">
-        <h1>Employee Manager</h1>
-        <div class="controls">
-            <input id="search" type="text" placeholder="Search by name..." />
-            <button id="refresh">Refresh</button>
-        </div>
+        <header class="app-header">
+            <div>
+                <h1>Employee Manager</h1>
+                <p class="subtitle">Manage your team members with ease</p>
+            </div>
+            <div class="controls">
+                <input class="input" id="search" type="text" placeholder="Search by name..." />
+                <button class="btn btn-outline" id="refresh">Refresh</button>
+            </div>
+        </header>
 
-        <form id="employee-form">
+        <form id="employee-form" class="card">
             <h2>Add Employee</h2>
-            <div class="field">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" required />
+            <div class="grid">
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input class="input" id="name" name="name" type="text" required />
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input class="input" id="email" name="email" type="email" required />
+                </div>
+                <div class="field">
+                    <label for="position">Position</label>
+                    <input class="input" id="position" name="position" type="text" required />
+                </div>
             </div>
-            <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" required />
+            <div class="actions">
+                <button class="btn btn-primary" type="submit">Add Employee</button>
             </div>
-            <div class="field">
-                <label for="position">Position</label>
-                <input id="position" name="position" type="text" required />
-            </div>
-            <button type="submit">Add</button>
             <div id="form-error" class="error" aria-live="polite"></div>
         </form>
 
-        <h2>Employees</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Position</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="employees"></tbody>
-        </table>
+        <section class="card table-card">
+            <h2>Employees</h2>
+            <div class="table-wrapper">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Position</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employees"></tbody>
+                </table>
+            </div>
+        </section>
     </div>
 
     <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -64,8 +77,8 @@
                     <input id="edit-position" type="text" required />
                 </div>
                 <div class="modal-actions">
-                    <button type="submit">Save</button>
-                    <button type="button" id="cancel">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn" type="button" id="cancel">Cancel</button>
                 </div>
                 <div id="edit-error" class="error" aria-live="polite"></div>
             </form>
